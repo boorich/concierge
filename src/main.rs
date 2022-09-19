@@ -16,9 +16,9 @@ mod streams;
 #[derive(Parser, Debug)]
 struct Cli {
     /// The pattern to look for
-    stream: String,
-    program: String,
     forum: String,
+    program: String,
+    stream: String,
 }
 
 fn main() {
@@ -28,8 +28,28 @@ fn main() {
     //create a new stream
     let stream = streams::Stream::new(
         String::from(&args.stream),
+        String::from("A project is any undertaking, carried out individually or collaboratively and possibly involving research or design, that is carefully planned to achieve a particular aim."),
+        streams::Person::new(
+            "Martin Maurer".to_string(),
+            vec!["rust".to_string(), "python".to_string()],
+        ),
+        vec![streams::Person::new(
+            "Nazar Hussain".to_string(),
+            vec!["rust".to_string(), "python".to_string()],
+        ), streams::Person::new(
+            "Willem Olding".to_string(),
+            vec!["rust".to_string(), "python".to_string()],
+        )],
+        "https://github.com/empea-careercriminal/concierge".to_string(),
+        "The Readme is cool.".to_string(),
+        vec!["web3".to_string(), "WebAssembly".to_string()],
+        "https://www.google.de/documentition".to_string(),
+        "https://www.notion.so/somepage".to_string(),
     );
 
+    //debug print the stream
+    // stream.status();
+    
     //create a new program
     let mut prog = programs::Program::new(
         String::from(&args.program),
@@ -43,15 +63,14 @@ fn main() {
         Vec::new(),
     );
     forum.members.push(prog);
-
-    // create a new forum and write it to a file
+    
+    // create folder structure
     match std::fs::create_dir_all("forums") {
         Ok(it) => it,
         Err(err) => panic!("Error creating directory: {}", err),
     };
-
-    // Output the JSON to stdout
-    let json = serde_json::to_string_pretty(&forum).unwrap();
-    println!("{}", json);
-    std::fs::write("./forums/output.json", serde_json::to_string_pretty(&forum).unwrap()).unwrap();
+    
+    // Generate Json
+    let output_path = format!("forums/{}.json", forum.name);
+    std::fs::write(output_path, serde_json::to_string_pretty(&forum).unwrap()).unwrap();
 }

@@ -1,63 +1,89 @@
+use chrono::prelude::*;
 use serde::{Deserialize, Serialize};
-use serde_json::Result;
+use serde_json::{Result, de};
 use std::fmt::format;
 
+#[derive(Debug, Serialize, Clone)]
+pub struct Person {
+    name: String,
+    skill: Vec<String>,
+}
+
+impl Person {
+    pub fn new(name: String, skill: Vec<String>) -> Person {
+        Person {
+            name: name,
+            skill: skill,
+        }
+    }
+}
 #[derive(Debug)]
 struct Dependency {
-    name: String,
-    version: String,
-    path: String,
-    optional: bool,
-    default_features: bool,
-    features: Vec<String>,
-    target: Option<String>,
-    registry: Option<String>,
+    deadline: chrono::DateTime<chrono::Utc>,
+    budget: u32,
+    expert: Person,
+    code: Vec<String>,
+    legal: Vec<String>, //optional field for legal documents
 }
 #[derive(Debug)]
 struct Feature {
     name: String,
-    dependencies: Vec<String>,
+    dependencies: Vec<Dependency>,
 }
 
 #[derive(Debug, Serialize, Clone)]
 pub struct Stream {
-    pub name: String,
-    version: String,
-    authors: Vec<String>,
-    license: String,
-    repository: String,
-    homepage: String,
-    documentation: String,
-    readme: String,
-    keywords: Vec<String>,
-    categories: Vec<String>,
-    include: Vec<String>,
-    exclude: Vec<String>,
+    pub name: String,      // name of the stream
+    description: String,   // description of the stream
+    stream_lead: Person,   // stream lead
+    team: Vec<Person>,     // team members
+    repository: String,    // code repository
+    readme: String,        // what is this stream about
+    keywords: Vec<String>, // keywords for tagging
+    documentation: String, // optional documentation
+    homepage: String,      // optional homepage
 }
 
 pub trait Actions {
-    fn new(name: String) -> Stream;
-    fn status(&self) -> String;
+    fn new(
+        name: String,
+        description: String,
+        stream_lead: Person,
+        team: Vec<Person>,
+        repository: String,
+        readme: String,
+        keywords: Vec<String>,
+        documentation: String,
+        homepage: String,
+    ) -> Stream;
+    fn status(&self);
 }
 
 impl Actions for Stream {
-    fn new(name: String) -> Stream {
+    fn new(
+        name: String,
+        description: String,
+        stream_lead: Person,
+        team: Vec<Person>,
+        repository: String,
+        readme: String,
+        keywords: Vec<String>,
+        documentation: String,
+        homepage: String,
+    ) -> Stream {
         Stream {
             name: name,
-            version: String::from("0.1.0"),
-            authors: Vec::new(),
-            license: String::from(""),
-            repository: String::from(""),
-            homepage: String::from(""),
-            documentation: String::from(""),
-            readme: String::from(""),
-            keywords: Vec::new(),
-            categories: Vec::new(),
-            include: Vec::new(),
-            exclude: Vec::new(),
+            description: description,
+            stream_lead: stream_lead,
+            team: team,
+            repository: repository,
+            homepage: homepage,
+            documentation: documentation,
+            readme: readme,
+            keywords: keywords,
         }
     }
-    fn status(&self) -> String {
-        format!("{} {} {}", self.name, self.version, self.repository)
+    fn status(&self) {
+        println!("{}", serde_json::to_string_pretty(&self).unwrap());
     }
 }

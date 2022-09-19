@@ -1,2 +1,5 @@
 # concierge
-Helps implementing an organisational framework.
+Helps implementing an operational framework.
+
+# usage
+run with: cargo run -- "forum" "program" "stream"

@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Result;
-use std::{fmt::format};
+use std::fmt::format;
 
 use crate::streams::Stream;
 
