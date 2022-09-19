@@ -34,14 +34,14 @@ struct Feature {
 #[derive(Debug, Serialize, Clone)]
 pub struct Stream {
     pub name: String,      // name of the stream
-    description: String,   // description of the stream
-    stream_lead: Person,   // stream lead
-    team: Vec<Person>,     // team members
-    repository: String,    // code repository
-    readme: String,        // what is this stream about
-    keywords: Vec<String>, // keywords for tagging
-    documentation: String, // optional documentation
-    homepage: String,      // optional homepage
+    pub description: String,   // description of the stream
+    pub stream_lead: Person,   // stream lead
+    pub team: Vec<Person>,     // team members
+    pub repository: String,    // code repository
+    pub readme: String,        // what is this stream about
+    pub keywords: Vec<String>, // keywords for tagging
+    pub documentation: String, // optional documentation
+    pub homepage: String,      // optional homepage
 }
 
 pub trait Actions {
@@ -57,6 +57,8 @@ pub trait Actions {
         homepage: String,
     ) -> Stream;
     fn status(&self);
+    fn edit_stream(&self);
+    fn delete_stream(&self);
 }
 
 impl Actions for Stream {
@@ -85,5 +87,13 @@ impl Actions for Stream {
     }
     fn status(&self) {
         println!("{}", serde_json::to_string_pretty(&self).unwrap());
+    }
+
+    fn edit_stream(&self) {
+        // edit stream
+    }
+
+    fn delete_stream(&self) {
+        // delete stream
     }
 }

@@ -3,6 +3,7 @@ use serde_json::Result;
 use std::fmt::format;
 
 use crate::streams::Stream;
+use crate::streams::Actions as streamactions;
 
 #[derive(Debug, Serialize, Clone)]
 pub struct Program {
@@ -13,6 +14,8 @@ pub struct Program {
 pub trait Actions {
     fn new(name: String, members: Vec<Stream>) -> Program;
     fn status(&self) -> String;
+    fn merge_streams(&self, stream1: Stream, stream2: Stream) -> Stream;
+    fn diff_streams(&self, stream: Stream, ratio: Stream) -> Stream;
 }
 
 impl Actions for Program {
@@ -24,5 +27,35 @@ impl Actions for Program {
     }
     fn status(&self) -> String {
         format!("{}", self.name)
+    }
+
+    fn merge_streams(&self, stream1: Stream, stream2: Stream) -> Stream {
+        let mut stream = Stream::new(
+            stream1.name,
+            stream1.description,
+            stream1.stream_lead,
+            stream1.team,
+            stream1.repository,
+            stream1.readme,
+            stream1.keywords,
+            stream1.documentation,
+            stream1.homepage,
+        );
+        stream
+    }
+
+    fn diff_streams(&self, stream: Stream, ratio: Stream) -> Stream {
+        let mut stream = Stream::new(
+            stream.name,
+            stream.description,
+            stream.stream_lead,
+            stream.team,
+            stream.repository,
+            stream.readme,
+            stream.keywords,
+            stream.documentation,
+            stream.homepage,
+        );
+        stream
     }
 }

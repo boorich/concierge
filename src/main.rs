@@ -26,7 +26,7 @@ fn main() {
     let args = Cli::parse();
 
     //create a new stream
-    let stream = streams::Stream::new(
+    let mut stream = streams::Stream::new(
         String::from(&args.stream),
         String::from("A project is any undertaking, carried out individually or collaboratively and possibly involving research or design, that is carefully planned to achieve a particular aim."),
         streams::Person::new(
@@ -48,7 +48,7 @@ fn main() {
     );
 
     //debug print the stream
-    // stream.status();
+    stream.status();
     
     //create a new program
     let mut prog = programs::Program::new(
