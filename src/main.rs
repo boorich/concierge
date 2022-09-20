@@ -5,6 +5,7 @@ use std::vec;
 use crate::forums::Actions as forumactions;
 use crate::programs::Actions as programactions;
 use crate::streams::Actions as streamactions;
+use chrono::DateTime;
 use clap::Parser;
 use serde_json::*;
 
@@ -40,7 +41,7 @@ fn main() {
             "Willem Olding".to_string(),
             vec!["rust".to_string(), "python".to_string()],
         )],
-        vec![],
+        vec![streams::Dependency::default(), streams::Dependency::default()],
         "The Readme is cool.".to_string(),
         "https://www.google.de/documentition".to_string(),
         vec!["web3".to_string(), "WebAssembly".to_string()],
@@ -48,29 +49,33 @@ fn main() {
         "https://www.youtube.com/watch?v=QH2-TGUlwu4".to_string(),
     );
 
-    //debug print the stream
-    stream.status();
-    
+    // debug print the stream
+    // stream.status();
+
     //create a new program
-    let mut prog = programs::Program::new(
-        String::from(&args.program),
-        Vec::new()
-    );
+    let mut prog = programs::Program::new(String::from(&args.program), Vec::new());
+
+    // Append the stream to the program
     prog.members.push(stream);
 
-    //create a new forum
-    let mut forum = forums::Forum::new(
-        String::from(&args.forum),
-        Vec::new(),
+    // Print the program's silo scores in a vector
+    // ToDo: Make this in a loop for all streams in the program
+    println!(
+        "Silo score for {}: {:?}",
+        prog.members[0],
+        prog.calc_silo_score_per_stream()
     );
+
+    //create a new forum
+    let mut forum = forums::Forum::new(String::from(&args.forum), Vec::new());
     forum.members.push(prog);
-    
+
     // create folder structure
     match std::fs::create_dir_all("forums") {
         Ok(it) => it,
         Err(err) => panic!("Error creating directory: {}", err),
     };
-    
+
     // Generate Json
     let output_path = format!("forums/{}.json", forum.name);
     std::fs::write(output_path, serde_json::to_string_pretty(&forum).unwrap()).unwrap();
