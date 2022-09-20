@@ -40,11 +40,12 @@ fn main() {
             "Willem Olding".to_string(),
             vec!["rust".to_string(), "python".to_string()],
         )],
-        "https://github.com/empea-careercriminal/concierge".to_string(),
+        vec![],
         "The Readme is cool.".to_string(),
-        vec!["web3".to_string(), "WebAssembly".to_string()],
         "https://www.google.de/documentition".to_string(),
+        vec!["web3".to_string(), "WebAssembly".to_string()],
         "https://www.notion.so/somepage".to_string(),
+        "https://www.youtube.com/watch?v=QH2-TGUlwu4".to_string(),
     );
 
     //debug print the stream

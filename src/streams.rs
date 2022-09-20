@@ -17,18 +17,38 @@ impl Person {
         }
     }
 }
-#[derive(Debug)]
-struct Dependency {
+
+#[derive(Debug, Clone, Serialize)]
+pub struct Dependency {
     deadline: chrono::DateTime<chrono::Utc>,
     budget: u32,
     expert: Person,
     code: Vec<String>,
     legal: Vec<String>, //optional field for legal documents
 }
-#[derive(Debug)]
-struct Feature {
-    name: String,
-    dependencies: Vec<Dependency>,
+
+impl Dependency {
+    fn new(deadline: chrono::DateTime<chrono::Utc>, budget: u32, expert: Person, code: Vec<String>, legal: Vec<String>) -> Dependency {
+        Dependency {
+            deadline: deadline,
+            budget: budget,
+            expert: expert,
+            code: code,
+            legal: legal,
+        }
+    }
+}
+
+impl Default for Dependency {
+    fn default() -> Self {
+        Dependency {
+            deadline: chrono::Utc::now(),
+            budget: 0,
+            expert: Person::new("".to_string(), Vec::new()),
+            code: Vec::new(),
+            legal: Vec::new(),
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Clone)]
@@ -37,6 +57,7 @@ pub struct Stream {
     pub description: String,   // description of the stream
     pub stream_lead: Person,   // stream lead
     pub team: Vec<Person>,     // team members
+    pub dependency: Vec<Dependency>, // dependencies
     pub repository: String,    // code repository
     pub readme: String,        // what is this stream about
     pub keywords: Vec<String>, // keywords for tagging
@@ -50,6 +71,7 @@ pub trait Actions {
         description: String,
         stream_lead: Person,
         team: Vec<Person>,
+        dependency: Vec<Dependency>,
         repository: String,
         readme: String,
         keywords: Vec<String>,
@@ -59,6 +81,7 @@ pub trait Actions {
     fn status(&self);
     fn edit_stream(&self);
     fn delete_stream(&self);
+    fn add_member(&self, member: Person);
 }
 
 impl Actions for Stream {
@@ -67,6 +90,7 @@ impl Actions for Stream {
         description: String,
         stream_lead: Person,
         team: Vec<Person>,
+        dependency: Vec<Dependency>,
         repository: String,
         readme: String,
         keywords: Vec<String>,
@@ -78,6 +102,7 @@ impl Actions for Stream {
             description: description,
             stream_lead: stream_lead,
             team: team,
+            dependency: dependency,
             repository: repository,
             homepage: homepage,
             documentation: documentation,
@@ -95,5 +120,9 @@ impl Actions for Stream {
 
     fn delete_stream(&self) {
         // delete stream
+    }
+
+    fn add_member(&self, member: Person) {
+        // add member to stream
     }
 }
