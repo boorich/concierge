@@ -12,6 +12,7 @@ use serde_json::*;
 mod forums;
 mod programs;
 mod streams;
+mod user;
 
 /// Search for a pattern in a file and display the lines that contain it.
 #[derive(Parser, Debug)]
@@ -25,6 +26,11 @@ struct Cli {
 fn main() {
     // get the command line arguments
     let args = Cli::parse();
+
+    // get user information
+    // ToDo: Make this async
+    let user = user::get();
+    // println!("{:?}", user?.text()); 
 
     //create a new stream
     let mut stream = streams::Stream::new(
