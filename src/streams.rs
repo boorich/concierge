@@ -118,7 +118,7 @@ impl Actions for Stream {
             keywords: keywords,
         }
     }
-    
+
     fn status(&self) {
         println!("{}", serde_json::to_string_pretty(&self).unwrap());
     }

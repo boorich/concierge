@@ -30,9 +30,9 @@ fn main() {
     // get user information
     // ToDo: Make this async
     let user = user::get();
-    // println!("{:?}", user?.text()); 
+    // println!("{:?}", user?.text());
 
-    //create a new stream
+    // create a new stream
     let mut stream = streams::Stream::new(
         String::from(&args.stream),
         String::from("A project is any undertaking, carried out individually or collaboratively and possibly involving research or design, that is carefully planned to achieve a particular aim."),

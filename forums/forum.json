@@ -1,0 +1,67 @@
+{
+  "name": "forum",
+  "members": [
+    {
+      "name": "program",
+      "members": [
+        {
+          "name": "my_brandnew_stream",
+          "description": "A project is any undertaking, carried out individually or collaboratively and possibly involving research or design, that is carefully planned to achieve a particular aim.",
+          "stream_lead": {
+            "name": "Martin Maurer",
+            "skill": [
+              "rust",
+              "python"
+            ]
+          },
+          "team": [
+            {
+              "name": "Nazar Hussain",
+              "skill": [
+                "rust",
+                "python"
+              ]
+            },
+            {
+              "name": "Willem Olding",
+              "skill": [
+                "rust",
+                "python"
+              ]
+            }
+          ],
+          "dependency": [
+            {
+              "deadline": "2022-09-22T09:31:21.664648Z",
+              "budget": 0,
+              "expert": {
+                "name": "",
+                "skill": []
+              },
+              "code": [],
+              "legal": []
+            },
+            {
+              "deadline": "2022-09-22T09:31:21.664688Z",
+              "budget": 0,
+              "expert": {
+                "name": "",
+                "skill": []
+              },
+              "code": [],
+              "legal": []
+            }
+          ],
+          "repository": "The Readme is cool.",
+          "readme": "https://www.google.de/documentition",
+          "keywords": [
+            "web3",
+            "WebAssembly"
+          ],
+          "documentation": "https://www.notion.so/somepage",
+          "homepage": "https://www.youtube.com/watch?v=QH2-TGUlwu4"
+        }
+      ]
+    }
+  ]
+}
