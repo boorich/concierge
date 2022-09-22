@@ -72,7 +72,7 @@ Removing a dev:
 - remove dev with the least skillset
 
 Calculating new dependencies:
-- Siloed Knowledge
+- Siloed knowledge
 - Siloed skillset
 - Siloed availability
 
@@ -175,9 +175,28 @@ fn subtractStreamFromProgram(Stream, Program) -> number {
 *to be added*
 ## Forum Questions
 *to be added*
-<!-- “What happens to a deadline if I do x vs. z.”
-- x: is adjusting the budget
-- z: is adjusting the scope
 
-“What happens in reality to the budget if I expand a deadline.”
-- estimated vs. actual resource allocation -->
+
+# Entities
+
+**Stream** is a a vision and a goal to provide some kind of value to a customer, user, or client.
+
+**Core Team** is working on the primary objective to deliver the maximum value to the customer/client. It’s about the “what” and “why”.
+
+**Enabling Team** help the stream on organizational and process-related matters or also on non-functional technical matters. They enable the core team.
+
+**Stream Lead** is accountable for the overall success of the Stream. This corresponds to the role of the Product Owner in the Scrum Framework.
+
+**Contributor** is responsible for the success of the Stream, by contributing in their defined subject or specialty. This corresponds to the role of the Scrum Team Member in the Scrum Framework.
+
+**Program** consist of Several streams operating in the same context or serving similar markets.
+
+**Program Lead** is responsible for driving the program’s overall success. This role can be seen and implemented as a Chief Product Owner type role as defined in the Scrum@Scale framework.
+
+**Impact Forum** align the efforts of multiple streams, e.g. to maximize the value for a customer, group of customers or market.
+The Impact Forum usually consists of the stream leads, with one of the stream leads taking the lead → Impact Forum Lead.
+
+**Experience Forum** could also consists of stream leads from different Programs
+
+**Experience Lead** not defined
+
