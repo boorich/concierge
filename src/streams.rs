@@ -29,6 +29,7 @@ pub struct Dependency {
 }
 
 impl Dependency {
+    // ToDo: Refactor according to notes.md
     fn new(
         deadline: chrono::DateTime<chrono::Utc>,
         budget: u32,

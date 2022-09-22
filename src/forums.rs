@@ -32,4 +32,11 @@ impl Actions for Forum {
     fn calculate_synergies(&self) {
         //ToDo: Figure out here how to calculate synergies between streams within any program
     }
+}impl serde::Serialize for Forum {
+    fn serialize<S>(&self, serializer: S) -> Result<<S as serde::Serializer>::Ok, <S as serde::Serializer>::Error> where S: serde::Serializer {
+        let mut state = serializer.serialize_struct("Forum", 2)?;
+        state.serialize_field("name", &self.name)?;
+        state.serialize_field("members", &self.members)?;
+        state.end()
+    }
 }
