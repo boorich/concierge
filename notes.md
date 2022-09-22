@@ -163,15 +163,15 @@ fn subtractStreamFromProgram(Stream, Program) -> number {
 </details>
 <br></br>
 
+
+# Forum
+## Forum Functions
+*to be added*
+## Forum Questions
+*to be added*
 <!-- “What happens to a deadline if I do x vs. z.”
 - x: is adjusting the budget
 - z: is adjusting the scope
 
 “What happens in reality to the budget if I expand a deadline.”
-- estimated vs. actual resource allocation
-
-# Forum
-<!-- ## Forum Functions -->
-
-## Forum Questions
-*to be added*
+- estimated vs. actual resource allocation -->
