@@ -132,7 +132,8 @@ fn isSiloed(Stream) -> boolean {
 ## Program Functions:
 <details>
   <summary>Program functions</summary>
-```JavaScript
+
+```javaScript
 calculateDependencies(Stream)
 sumStreamDependencies(Program)
 subtractStreamFromProgram(Stream, Program)
@@ -144,8 +145,12 @@ subtractStreamFromProgram(Stream, Program)
 ”How much siloing do I introduce to a program, when I remove stream x from it.”
 - siloed vs non-siloed could be calculated by the number of dependencies
 
+
+
 <details>
   <summary>Calculate Program Dependencies</summary>
+
+```javascript
 fn calculateDependencies(Stream) -> number {
     let dependencies = Stream.map(dev => dev.dependencies)
     return dependencies.length
@@ -160,6 +165,7 @@ fn subtractStreamFromProgram(Stream, Program) -> number {
     let newProgram = Program.filter(stream => stream !== Stream)
     return sumStreamDependencies(newProgram)
 }
+```
 </details>
 <br></br>
 
