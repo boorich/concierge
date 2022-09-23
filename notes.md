@@ -5,11 +5,53 @@
   <summary>Stream functions</summary>
   
 This is pseudo code for the stream functions.
-  ```js
+  ```javascript
+
+    fn constructStream (
+      streamName, // MyStream
+      streamDescription, // This is a stream
+      streamLeader, // Martin Maurer
+      streamMembers[], // [Martin Maurer, John Doe, Jane Doe]
+      streamValue, // 100000
+      streamBalance, // 0
+      streamDeadline, // 2020-01-01
+      streamTags[], // [finance, money, Web3, Ethereum, blockchain, crypto, cryptocurrency]
+    ) {
+      stream = {
+        name: streamName,
+        description: streamDescription,
+        leader: streamLeader,
+        members: streamMembers[],
+        value: streamValue,
+        balance: streamBalance,
+        deadline: streamDeadline,
+      }
+      return stream
+    }
+
+    fn constructDeveloper (
+        name: string, // Martin Maurer
+        github: string, // empea-careercriminal
+        skill: string[], // [javascript, solidity, python, rust, go, c++, c, java, html, css, bash, git]
+        hourlyRate: number, // 100
+        availability_in_range: number, // 0
+    ) {
+      developer = {
+        name: name,
+        github: github,
+        skill: skill[],
+        hourlyRate: hourlyRate,
+        availability_in_range: availability_in_range,
+      }
+      return developer
+    }
+
+    constructStream(streamName,streamDescription,streamLeader,streamMembers[],streamTags)
     bestFit(Developers, Budget, Timeline, Skillset)
     addDeveloper(Developer)
     removeDeveloper(Developer)
     amISiloed(Stream)
+    amIPartOf(Program)
   ```
 </details>
 <br/><br/>
@@ -38,16 +80,6 @@ Generalize the above steps to a function that takes in a list of developers and 
 
 This is pseudo code for the bestFit() function.
 ```js
-    let Dev = {
-    name: string,
-    hourlyRate: number,
-    availability_in_range: number,
-    skillset: string[]
-    }
-    let Devs = Dev[]
-    let Budget = number
-    let Timeline = number
-    let Skillset = string[]
 
     fn bestFit(Developers, Budget, Timeline, Skillset) -> Developer {
         mapBudgetPerHourToDeveloperHourlyRate(Developers, Budget)
